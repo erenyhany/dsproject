@@ -63,4 +63,5 @@ public class User {
 class Post{
     String body ;
     LinkedList<String> topics = new LinkedList<String>();
+    Post(){}
 }
