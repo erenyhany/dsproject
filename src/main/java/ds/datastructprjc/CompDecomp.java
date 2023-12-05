@@ -11,7 +11,7 @@ public class CompDecomp {
   //function to determine xml or json
   public static char xmlORjson(String input) {
         for (char ch : input.toCharArray()) {
-            if (ch == '<' || ch == '{') {
+            if (!Character.isWhitespace(ch)) {
                 return ch;
             }
         }
