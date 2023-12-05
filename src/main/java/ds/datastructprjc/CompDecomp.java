@@ -8,6 +8,16 @@ public class CompDecomp {
         return input.replaceAll("\\s", "");
     }
 
+  //function to determine xml or json
+  public static char xmlORjson(String input) {
+        for (char ch : input.toCharArray()) {
+            if (ch == '<' || ch == '{') {
+                return ch;
+            }
+        }
+        return '\0';
+    }
+
   //function replace spaces with number
   private static String replaceSpacesWithCount(String input) {
         StringBuilder result = new StringBuilder();
