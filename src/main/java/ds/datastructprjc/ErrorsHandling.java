@@ -1,7 +1,6 @@
 package ds.datastructprjc;
 /*************************/
-//lazem a3mel mawdou3 el tags el malhash '>'  done
-//if '<'is missed
+
 
 /************************************/
 
