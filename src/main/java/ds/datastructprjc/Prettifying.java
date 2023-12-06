@@ -40,6 +40,8 @@ public class Prettifying {
                 if(openlabel.equals("id") || openlabel.equals("name")){
                     NameOrId = true;
                     ///find first char that isn't a \s \n \t then append all to string until </
+                    String word = getSubstringUntilChar(file, i+1);
+                    prettyFile = prettyFile.append(word);
                 }else{
                     prettyFile = prettyFile.append('\n');
                     for(int j=0;j< stack.size();j++){
@@ -48,6 +50,8 @@ public class Prettifying {
                 }
                 if(isbodylabel){
                     //find first char that isn't a \s \n \t then append all to string until </
+                    String word = getSubstringUntilChar(file, i+1);
+                    prettyFile = prettyFile.append(word);
                 }
             } //condition for closedlabel
             else if (current == '<' && next == '/') {
@@ -100,8 +104,22 @@ public class Prettifying {
             strBuffer.deleteCharAt(strBuffer.length() - 1);
         }
     }
+
+    //function to ignore all spaces, new lines or tags at the beginning of a string
+    public static String getSubstringUntilChar(StringBuffer input, int startIndex) {
+        int actualStartIndex = startIndex;
+
+        // Skip spaces if the starting index contains a space
+        while (actualStartIndex < input.length() && (input.charAt(actualStartIndex) == ' ' || input.charAt(actualStartIndex) == '\n' || input.charAt(actualStartIndex) == '\t')) {
+            actualStartIndex++;
+        }
+
+        int lessThanIndex = input.indexOf("<", actualStartIndex);
+
+        if (lessThanIndex != -1) {
+            return input.substring(actualStartIndex, lessThanIndex).toString();
+        } else {
+            return input.substring(actualStartIndex).toString();
+        }
+    }
 }
-
-
-
-
