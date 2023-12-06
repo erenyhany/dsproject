@@ -30,6 +30,11 @@ public class Prettifying {
                     i++;
                 }
                 current = file.charAt(i);  //current char
+                if(i<file.length()-1){
+                    next = file.charAt(i + 1); //next char
+                }else{
+                    next='"';
+                }
 
                 //pushing label onto the stack
                 stack.push(openlabel + "");
@@ -40,7 +45,8 @@ public class Prettifying {
                 if(openlabel.equals("id") || openlabel.equals("name")){
                     NameOrId = true;
                     ///find first char that isn't a \s \n \t then append all to string until </
-                    String word = getSubstringUntilChar(file, i+1);
+                    String word = getSubstringUntilWhitespace(file, i+1);
+                    word = removeExtraSpacesAtEnd(word);
                     prettyFile = prettyFile.append(word);
                 }else{
                     prettyFile = prettyFile.append('\n');
@@ -48,9 +54,9 @@ public class Prettifying {
                         prettyFile = prettyFile.append('\t');
                     }
                 }
-                if(isbodylabel){
-                    //find first char that isn't a \s \n \t then append all to string until </
-                    String word = getSubstringUntilChar(file, i+1);
+                if(openlabel.equals("body") || openlabel.equals("topic")){
+                    //find first char that isn't a \s \n \t then append all to string until \n
+                    String word = getSubstringUntilWhitespace(file, i+1);
                     prettyFile = prettyFile.append(word);
                 }
             } //condition for closedlabel
@@ -83,6 +89,7 @@ public class Prettifying {
         return prettyFile;
     }
 
+    //-----------------------------------------------------------------------------------------------
     //function to get labels
     public static String findWordAtIndex(StringBuffer text, int startIndex) {
         int spaceIndex = text.indexOf(">", startIndex); // Find the next space from startIndex
@@ -98,6 +105,7 @@ public class Prettifying {
         return word;
     }
 
+    //-------------------------------------------------------------------------------------------------
     //function to remove last char (using it for tags only)in a stringbuffer
     public static void removeLastChar(StringBuffer strBuffer) {
         if (strBuffer.length() > 0) {
@@ -105,21 +113,51 @@ public class Prettifying {
         }
     }
 
-    //function to ignore all spaces, new lines or tags at the beginning of a string
-    public static String getSubstringUntilChar(StringBuffer input, int startIndex) {
+    //-------------------------------------------------------------------------------------------------
+    //function to ignore all white spaces at the begining of a string
+    public static String getSubstringUntilWhitespace(StringBuffer input, int startIndex) {
         int actualStartIndex = startIndex;
 
-        // Skip spaces if the starting index contains a space
-        while (actualStartIndex < input.length() && (input.charAt(actualStartIndex) == ' ' || input.charAt(actualStartIndex) == '\n' || input.charAt(actualStartIndex) == '\t')) {
+        // Skip whitespace characters if the starting index contains any of them
+        while (actualStartIndex < input.length() &&
+                (input.charAt(actualStartIndex) == ' ' ||
+                        input.charAt(actualStartIndex) == '\n' ||
+                        input.charAt(actualStartIndex) == '\t')) {
             actualStartIndex++;
         }
 
-        int lessThanIndex = input.indexOf("<", actualStartIndex);
+        int whitespaceIndex = input.length(); // Initialize with end of string by default
 
-        if (lessThanIndex != -1) {
-            return input.substring(actualStartIndex, lessThanIndex).toString();
-        } else {
-            return input.substring(actualStartIndex).toString();
+        // Find the index of the next whitespace character (\n, \t, or space)
+        for (int i = actualStartIndex; i < input.length(); i++) {
+            char currentChar = input.charAt(i);
+            if (currentChar == '\n' || currentChar == '\t' || currentChar == '<') {
+                whitespaceIndex = i;
+                break;
+            }
         }
+
+        return input.substring(actualStartIndex, whitespaceIndex);
+    }
+
+    //-------------------------------------------------------------------------------------------------
+    //function that removes all extra spaces at the end of string
+    public static String removeExtraSpacesAtEnd(String input) {
+        if (input == null || input.isEmpty()) {
+            return input; // Return input if it's null or empty
+        }
+
+        int endIndex = input.length() - 1;
+
+        // Find the last non-space character index from the end
+        while (endIndex >= 0 && input.charAt(endIndex) == ' ') {
+            endIndex--;
+        }
+
+        // Return the substring from start to the last non-space character index
+        return input.substring(0, endIndex + 1);
     }
 }
+
+
+
