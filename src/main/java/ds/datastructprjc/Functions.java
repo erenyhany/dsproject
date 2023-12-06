@@ -20,15 +20,15 @@ public class Functions {
     }
 
     public static String compress(String fileText){
-        char x = CompDecomp.xmlORjson(filetext);
-        if(x == '{')return CompDecomp.jsonEncode(filetext);
-        else return CompDecomp.xmlEncode(filetext);
+        char x = CompDecomp.xmlORjson(fileText);
+        if(x == '{')return CompDecomp.jsonEncode(fileText);
+        else return CompDecomp.xmlEncode(fileText);
     }
 
     public static String decompress(String fileText){
-        char x = CompDecomp.xmlORjson(filetext);
-        if(x == '{')return CompDecomp.jsonDecode(filetext);
-        else return CompDecomp.xmlDecode(filetext);
+        char x = CompDecomp.xmlORjson(fileText);
+        if(x == '{')return CompDecomp.jsonDecode(fileText);
+        else return CompDecomp.xmlDecode(fileText);
     }
 
     public static String toJSON(String fileText){
