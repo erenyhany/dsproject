@@ -8,7 +8,7 @@ public class Prettifying {
 
         Stack <String> stack = new Stack<>();
         StringBuffer prettyFile = new StringBuffer();
-        boolean isbodylabel = false;
+        boolean isbodyortopiclabel = false;
         boolean NameOrId = false;
         int i =0;
         char current;
@@ -56,6 +56,7 @@ public class Prettifying {
                 }
                 if(openlabel.equals("body") || openlabel.equals("topic")){
                     //find first char that isn't a \s \n \t then append all to string until \n
+                    isbodyortopiclabel = true;
                     String word = getSubstringUntilWhitespace(file, i+1);
                     prettyFile = prettyFile.append(word);
                 }
@@ -70,8 +71,14 @@ public class Prettifying {
                 //pop stack
                 stack.pop();
 
-
-                if(!NameOrId){
+                if(isbodyortopiclabel){
+                    prettyFile = prettyFile.append('\n');
+                    for(int j=0;j< stack.size();j++){
+                        prettyFile = prettyFile.append('\t');
+                    }
+                    isbodyortopiclabel = false;
+                }
+                else if(!NameOrId){
                     NameOrId = false;
                     removeLastChar(prettyFile);
                 }
