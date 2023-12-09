@@ -6,8 +6,8 @@ package ds.datastructprjc;
 import java.util.*;
 
 public class ErrorsHandling {
-    private static StringBuilder correctedFile;
-    private static StringBuilder errormsg;
+    public static StringBuilder correctedFile;
+    public static StringBuilder errormsg;
     private static String [] tagNames = {"id","posts","post","users","user","followers","follower","topics","topic","name","body"};
     //making a tree to determine the child of each tags setting children for each node
     private final static TreeNode id  = new TreeNode(tagNames[0],new TreeNode[]{null,null,null,null});
@@ -250,9 +250,9 @@ public class ErrorsHandling {
     }
 
     //made for the case of id and follower
-    private boolean isAscenderOrDescender(String tag1 , String tag2){
-        return (map.get(tag1)).isDescendent(map.get(tag2))!=null  ||  (map.get(tag2)).isDescendent(map.get(tag1))!=null;
-    }
+//    private boolean isAscenderOrDescender(String tag1 , String tag2){
+//        return (map.get(tag1)).isDescendent(map.get(tag2))!=null  ||  (map.get(tag2)).isDescendent(map.get(tag1))!=null;
+//    }
   
 }
 
