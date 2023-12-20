@@ -8,11 +8,10 @@ public class Prettifying {
 
         Stack <String> stack = new Stack<>();
         StringBuffer prettyFile = new StringBuffer();
-        boolean isbodyortopiclabel = false;
-        boolean NameOrId = false;
         int i =0;
         char current;
         char next;
+        char prev;
 
         while(i < file.length()){
             current = file.charAt(i);  //current char
@@ -23,7 +22,7 @@ public class Prettifying {
             }
 
             //condition for open label
-            if (current == '<' && next != '/') {
+            if (current == '<' && next != '/' && next !='!') {
 
                 String openlabel = findWordAtIndex(file, i + 1); //get label
                 for (int j = 0; j <= openlabel.length(); j++) {
@@ -37,29 +36,29 @@ public class Prettifying {
                 }
 
                 //pushing label onto the stack
-                stack.push(openlabel + "");
 
+                if(prettyFile.length() > 0 && prettyFile.charAt(prettyFile.length() - stack.size()) != '\n'){
+                    prettyFile=prettyFile.append('\n');
+                }
+
+                for(int j=0;j< stack.size();j++){
+                    prettyFile = prettyFile.append('\t');
+                }
                 prettyFile = prettyFile.append('<'+openlabel+'>');
 
+                stack.push(openlabel + "");
 
-                if(openlabel.equals("id") || openlabel.equals("name")){
-                    NameOrId = true;
-                    ///find first char that isn't a \s \n \t then append all to string until </
-                    String word = getSubstringUntilWhitespace(file, i+1);
-                    word = removeExtraSpacesAtEnd(word);
-                    prettyFile = prettyFile.append(word);
-                }else{
-                    prettyFile = prettyFile.append('\n');
+
+                //find first char that isn't a \s \n \t then append all to string until \n
+                String word = getSubstringUntilWhitespace(file, i+1);
+                if(word.length()>=1){
+                    prettyFile=prettyFile.append('\n');
                     for(int j=0;j< stack.size();j++){
                         prettyFile = prettyFile.append('\t');
                     }
-                }
-                if(openlabel.equals("body") || openlabel.equals("topic")){
-                    //find first char that isn't a \s \n \t then append all to string until \n
-                    isbodyortopiclabel = true;
-                    String word = getSubstringUntilWhitespace(file, i+1);
                     prettyFile = prettyFile.append(word);
                 }
+
             } //condition for closedlabel
             else if (current == '<' && next == '/') {
                 String closedlabel = findWordAtIndex(file, i + 2); //get closing label
@@ -70,29 +69,16 @@ public class Prettifying {
 
                 //pop stack
                 stack.pop();
-
-                if(isbodyortopiclabel){
-                    prettyFile = prettyFile.append('\n');
-                    for(int j=0;j< stack.size();j++){
-                        prettyFile = prettyFile.append('\t');
-                    }
-                    isbodyortopiclabel = false;
-                }
-                else if(!NameOrId){
-                    NameOrId = false;
-                    removeLastChar(prettyFile);
-                }
-                prettyFile = prettyFile.append("</"+closedlabel+'>');
                 prettyFile = prettyFile.append('\n');
                 for(int j=0;j< stack.size();j++){
                     prettyFile = prettyFile.append('\t');
                 }
-                if(NameOrId){
-                    NameOrId = false;
-                }
+                prettyFile = prettyFile.append("</"+closedlabel+'>');
+
             }
             i++;
         }
+        removePattern(prettyFile);
         return prettyFile;
     }
 
@@ -164,7 +150,19 @@ public class Prettifying {
         // Return the substring from start to the last non-space character index
         return input.substring(0, endIndex + 1);
     }
+    //-----------------------------------------------------------------------------------------------------
+    //fun to remove consec '\n'
+    public static void removePattern(StringBuffer stringBuffer) {
+        int i = 0;
+        while (i < stringBuffer.length() - 2) {
+            if (stringBuffer.charAt(i) == '\n' && stringBuffer.charAt(i + 1) == '\n' && stringBuffer.charAt(i + 2) == '\t') {
+                stringBuffer.deleteCharAt(i);
+                i++; // Move past the deleted '\n'
+            } else {
+                i++;
+            }
+        }
+    }
 }
-
 
 
