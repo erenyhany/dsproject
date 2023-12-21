@@ -75,85 +75,47 @@ public class CompDecomp {
   //function encode xml string
   public static String xmlEncode(String input){
 
-        //encode repeated strings
-        String result = input.replaceAll("<users>","ا");
-        result = result.replaceAll("</users>", "اس");
+        String r = input;
+        code = new HashMap<>();
+        int i=0, encodedNo=192;
+        String y;
 
-        result = result.replaceAll("<user>", "ب");
-        result = result.replaceAll("</user>", "بس");
+        //creating Map for encoding
+        while(i<input.length()){
+            if(input.charAt(i)=='<'){
+                int j=i;
+                while(input.charAt(j)!='>')j++;
+                y = r.substring(i,j);
 
-        result = result.replaceAll("<id>", "ت");
-        result = result.replaceAll("</id>", "تس");
+                //append string in Map
+                code.put(y, String.valueOf(encodedNo++));
 
-        result = result.replaceAll("<name>", "ث");
-        result = result.replaceAll("</name>", "ثس");
+                //i = last char index
+                i=j;
+            }
+            else i++;
+        }
 
-        result = result.replaceAll("<posts>", "ج");
-        result = result.replaceAll("</posts>", "جس");
+        for (Map.Entry<String, String> entry : code.entrySet()) {
+            r = r.replaceAll(entry.getKey(), entry.getValue());
+        }
 
-        result = result.replaceAll("<post>", "ح");
-        result = result.replaceAll("</post>", "حس");
-
-        result = result.replaceAll("<body>", "خ");
-        result = result.replaceAll("</body>", "خس");
-
-        result = result.replaceAll("<topics>", "ط");
-        result = result.replaceAll("</topics>", "طس");
-
-        result = result.replaceAll("<topic>", "ظ");
-        result = result.replaceAll("</topic>", "ظس");
-
-        result = result.replaceAll("<followers>", "د");
-        result = result.replaceAll("</followers>", "دس");
-
-        result = result.replaceAll("<follower>", "ذ");
-        result = result.replaceAll("</follower>", "ذس");
-
-        result = result.replaceAll("\n", "ص");
-        result = replaceSpacesWithCount(result);
-
-        return result;
+        r = r.replaceAll("\n", "ص");
+        r = replaceSpacesWithCount(r);
+        return r;
     }
 
   //function decode xml string
   public static String xmlDecode(String encodedInput) {
-        String result = encodedInput.replaceAll("اس", "</users>");
-        result = result.replaceAll("ا", "<users>");
+        String r = encodedInput;
 
-        result = result.replaceAll("بس", "</user>");
-        result = result.replaceAll("ب", "<user>");
+        for (Map.Entry<String, String> entry : code.entrySet()) {
+            r = r.replaceAll(entry.getValue(), entry.getKey());
+        }
+        r = replaceCountWithSpaces(r);
+        r = r.replaceAll("ص", "\n");
 
-        result = result.replaceAll("تس", "</id>");
-        result = result.replaceAll("ت", "<id>");
-
-        result = result.replaceAll("ثس", "</name>");
-        result = result.replaceAll("ث", "<name>");
-
-        result = result.replaceAll("جس", "</posts>");
-        result = result.replaceAll("ج", "<posts>");
-
-        result = result.replaceAll("حس", "</post>");
-        result = result.replaceAll("ح", "<post>");
-
-        result = result.replaceAll("خس", "</body>");
-        result = result.replaceAll("خ", "<body>");
-
-        result = result.replaceAll("طس", "</topics>");
-        result = result.replaceAll("ط", "<topics>");
-
-        result = result.replaceAll("ظس", "</topic>");
-        result = result.replaceAll("ظ", "<topic>");
-
-        result = result.replaceAll("دس", "</followers>");
-        result = result.replaceAll("د", "<followers>");
-
-        result = result.replaceAll("ذس", "</follower>");
-        result = result.replaceAll("ذ", "<follower>");
-
-        result = replaceCountWithSpaces(result);
-        result = result.replaceAll("ص", "\n");
-
-        return result;
+        return r;
     }
 
   //function encode json string
