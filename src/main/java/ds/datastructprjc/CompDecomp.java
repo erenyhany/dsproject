@@ -1,5 +1,6 @@
 //Mina Hany Hanna
 package ds.datastructprjc;
+import java.util.*;
 
 public class CompDecomp {
   
@@ -72,6 +73,7 @@ public class CompDecomp {
         return result.toString();
     }
 
+  static Map<String,String> code;
   //function encode xml string
   public static String xmlEncode(String input){
 
