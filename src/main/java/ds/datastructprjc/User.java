@@ -63,5 +63,22 @@ public class User {
 class Post{
     String body ;
     LinkedList<String> topics = new LinkedList<String>();
+
+    public String getBody() {
+        return body;
+    }
+
+    public LinkedList<String> getTopics() {
+        return topics;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public void setTopics(LinkedList<String> topics) {
+        this.topics = topics;
+    }
+
     Post(){}
 }
