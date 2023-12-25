@@ -171,6 +171,17 @@ public class ErrorsHandling {
             }
         }//main loop
 
+        if(!lessThanSignsStack.empty()){
+//            correctedFile.append(">");
+            errormsg.append("line "+lineCounter+": there is a missing '>'\n");
+            int i = correctedFile.length()-1;
+            while(!Character.isLetter(correctedFile.charAt(i))){
+                correctedFile.deleteCharAt(i);
+                i--;
+            }
+            correctedFile.append(">");
+        }
+
         //if at the end of the file there are unclosed tags (stack not empty)
         if(!tagsStack.empty()){
             while(!tagsStack.empty()){
