@@ -73,12 +73,14 @@ public class CompDecomp {
         return result.toString();
     }
 
-  static Map<String,String> code;
-  //function encode xml string
-  public static String xmlEncode(String input){
-
+  static List<String> map_xml;
+    static int map_ixml;
+    public static String xmlEncode(String input){
         String r = input;
-        code = new HashMap<>();
+
+        map_xml = new ArrayList<>();
+        map_ixml=0;
+
         int i=0, encodedNo=192;
         String y;
 
@@ -87,10 +89,10 @@ public class CompDecomp {
             if(input.charAt(i)=='<'){
                 int j=i;
                 while(input.charAt(j)!='>')j++;
-                y = r.substring(i,j);
+                y = r.substring(i,j+1);
 
                 //append string in Map
-                code.put(y, String.valueOf(encodedNo++));
+                map_xml.add(map_ixml++,y);
 
                 //i = last char index
                 i=j;
@@ -98,8 +100,8 @@ public class CompDecomp {
             else i++;
         }
 
-        for (Map.Entry<String, String> entry : code.entrySet()) {
-            r = r.replaceAll(entry.getKey(), entry.getValue());
+        for(int n=map_ixml-1; n>=0; n--){
+            r=r.replaceAll(map_xml.get(n),String.valueOf(192+n));
         }
 
         r = r.replaceAll("\n", "ص");
@@ -111,9 +113,10 @@ public class CompDecomp {
   public static String xmlDecode(String encodedInput) {
         String r = encodedInput;
 
-        for (Map.Entry<String, String> entry : code.entrySet()) {
-            r = r.replaceAll(entry.getValue(), entry.getKey());
+        for(int n=map_ixml-1; n>=0; n--){
+            r=r.replaceAll(String.valueOf(192+n),map_xml.get(n));
         }
+
         r = replaceCountWithSpaces(r);
         r = r.replaceAll("ص", "\n");
 
@@ -121,67 +124,58 @@ public class CompDecomp {
     }
 
   //function encode json string
-  public static String jsonEncode(String input){
+  static List<String> map_json;
+    static int map_ijson;
+    public static String jsonEncode(String input){
+        String r = input;
 
-        //encode repeated strings
-        String result = input.replaceAll("\"users\":","ا");
+        map_json = new ArrayList<>();
+        map_ijson=0;
 
-        result = result.replaceAll("<\"user\":>", "ب");
+        int i=0, encodedNo=192;
+        String y;
 
-        result = result.replaceAll("\"id\":", "ت");
+        //creating Map for encoding
+        while(i<input.length()){
+            if(input.charAt(i)=='\"'){
+                int j=i;
+                while(input.charAt(j)!=':' && (j-i<14))j++;
+                if((j-i<14)) {
+                    y = r.substring(i, j + 1);
 
-        result = result.replaceAll("\"name\":", "ث");
+                    //append string in Map
+                    map_json.add(map_ijson++, y);
 
-        result = result.replaceAll("\"posts\":", "ج");
+                    //i = last char index
+                    i = j;
+                }
+                else{i=j;}
+            }
+            else i++;
+        }
 
-        result = result.replaceAll("\"post\":", "ح");
+        for(int n=map_ijson-1; n>=0; n--){
+            r=r.replaceAll(map_json.get(n),String.valueOf(192+n));
+        }
 
-        result = result.replaceAll("\"body\":", "خ");
-
-        result = result.replaceAll("\"topics\":", "ط");
-
-        result = result.replaceAll("\"topic\":", "ظ");
-
-        result = result.replaceAll("\"followers\":", "د");
-
-        result = result.replaceAll("\"follower\":", "ذ");
-
-        result = result.replaceAll("\n", "ص");
-        result = replaceSpacesWithCount(result);
-
-        return result;
+        r = r.replaceAll("\n", "ص");
+        r = replaceSpacesWithCount(r);
+        return r;
     }
 
   //function decode json string
   public static String jsonDecode(String input){
 
-        //encode repeated strings
-        String result = input.replaceAll("ا","\"users\":");
+        String r = input;
 
-        result = result.replaceAll("ب", "<\"user\":>");
+        for(int n=map_ijson-1; n>=0; n--){
+            r=r.replaceAll(String.valueOf(192+n),map_json.get(n));
+        }
 
-        result = result.replaceAll("ت", "\"id\":");
+        r = replaceCountWithSpaces(r);
+        r = r.replaceAll("ص", "\n");
 
-        result = result.replaceAll("ث", "\"name\":");
-
-        result = result.replaceAll("ج", "\"posts\":");
-
-        result = result.replaceAll("ح", "\"post\":");
-
-        result = result.replaceAll("خ", "\"body\":");
-
-        result = result.replaceAll("ط", "\"topics\":");
-
-        result = result.replaceAll("ظ", "\"topic\":");
-
-        result = result.replaceAll("د", "\"followers\":");
-
-        result = result.replaceAll("ذ", "\"follower\":");
-
-        result = replaceCountWithSpaces(result);
-        result = result.replaceAll("ص", "\n");
-
-        return result;
+        return r;
     }
   
 }
