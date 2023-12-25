@@ -21,14 +21,14 @@
             </AnchorPane>
         </items>
       </SplitPane>
-      <Button alignment="CENTER" layoutX="16.0" layoutY="82.0" mnemonicParsing="false" onMouseClicked="#showFile" prefHeight="26.0" prefWidth="113.0" style="-fx-background-radius: 15px;" text="Choose an xml file" textFill="#230f0f" />
-      <Button alignment="CENTER" layoutX="16.0" layoutY="222.0" mnemonicParsing="false" onMouseClicked="#Compress" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Compress file" />
-      <Button alignment="CENTER" layoutX="16.0" layoutY="295.0" mnemonicParsing="false" onMouseClicked="#Decompress" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Decompress file" />
-      <Button alignment="CENTER" layoutX="16.0" layoutY="365.0" mnemonicParsing="false" onMouseClicked="#Prettify" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Prettify" />
-      <Button alignment="CENTER" layoutX="16.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#ConvertJSON" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Convert to JSON" />
-      <Button alignment="CENTER" layoutX="16.0" layoutY="519.0" mnemonicParsing="false" onMouseClicked="#Minify" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Minify file" />
-      <Button alignment="CENTER" layoutX="15.0" layoutY="153.0" mnemonicParsing="false" onMouseClicked="#Correct" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Correct Error" AnchorPane.leftAnchor="15.0" />
-      <Button alignment="CENTER" layoutX="16.0" layoutY="591.0" mnemonicParsing="false" onMouseClicked="#Save" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Save file" />
+      <Button alignment="CENTER" layoutX="16.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#showFile" prefHeight="26.0" prefWidth="113.0" style="-fx-background-radius: 15px;" text="Choose an xml file" textFill="#230f0f" />
+      <Button alignment="CENTER" layoutX="16.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#Compress" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Compress file" />
+      <Button alignment="CENTER" layoutX="16.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#Decompress" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Decompress file" />
+      <Button alignment="CENTER" layoutX="16.0" layoutY="374.0" mnemonicParsing="false" onMouseClicked="#Prettify" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Prettify" />
+      <Button alignment="CENTER" layoutX="15.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#ConvertJSON" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Convert to JSON" />
+      <Button alignment="CENTER" layoutX="16.0" layoutY="499.0" mnemonicParsing="false" onMouseClicked="#Minify" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Minify file" />
+      <Button alignment="CENTER" layoutX="16.0" layoutY="131.0" mnemonicParsing="false" onMouseClicked="#Correct" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Correct Error" AnchorPane.leftAnchor="16.0" />
+      <Button alignment="CENTER" layoutX="16.0" layoutY="569.0" mnemonicParsing="false" onMouseClicked="#Save" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Save file" />
+      <Button alignment="CENTER" layoutX="16.0" layoutY="193.0" mnemonicParsing="false" onMouseClicked="#Detect" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Detect Error" />
    </children>
 </AnchorPane>
-
