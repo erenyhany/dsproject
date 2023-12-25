@@ -11,7 +11,7 @@ public class Graph {
         adj.get(u.getID()).add(v);
     }
 
-    void constructGraph(){
+    public static void constructGraph(){
         Edges = 0;
         XMLReader.parsing(XMLReader.fileText.toString());
         Vertices = XMLReader.UsersList.size();
