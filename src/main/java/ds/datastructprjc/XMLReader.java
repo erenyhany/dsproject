@@ -29,7 +29,7 @@ public class XMLReader {
             e.getMessage();
             System.exit(0);
         }
-        parsing(fileText.toString());
+//        parsing(fileText.toString());
     }
 
     public static void parsing(String xmlString)
