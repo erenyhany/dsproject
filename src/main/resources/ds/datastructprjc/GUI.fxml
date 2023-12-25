@@ -7,22 +7,22 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="914.0" style="-fx-background-color: Azure;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ds.datastructprjc.GUIController">
    <children>
-      <SplitPane dividerPositions="0.5" layoutX="152.0" layoutY="16.0" prefHeight="676.0" prefWidth="713.0">
+      <SplitPane dividerPositions="0.5" layoutX="163.0" layoutY="32.0" prefHeight="619.0" prefWidth="730.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="231.0" prefWidth="153.0">
                <children>
-                  <TextArea fx:id="TA1" editable="false" prefHeight="675.0" prefWidth="353.0" />
+                  <TextArea fx:id="TA1" editable="false" prefHeight="618.0" prefWidth="354.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TextArea fx:id="TA2" editable="false" prefHeight="675.0" prefWidth="353.0" />
+                  <TextArea fx:id="TA2" editable="false" layoutX="1.0" prefHeight="618.0" prefWidth="354.0" />
                </children>
             </AnchorPane>
         </items>
       </SplitPane>
       <Button alignment="CENTER" layoutX="16.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#showFile" prefHeight="26.0" prefWidth="113.0" style="-fx-background-radius: 15px;" text="Choose an xml file" textFill="#230f0f" />
-      <Button alignment="CENTER" layoutX="16.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#Compress" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Compress file" />
+      <Button alignment="CENTER" layoutX="16.0" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#Compress" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Compress file" />
       <Button alignment="CENTER" layoutX="16.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#Decompress" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Decompress file" />
       <Button alignment="CENTER" layoutX="16.0" layoutY="374.0" mnemonicParsing="false" onMouseClicked="#Prettify" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Prettify" />
       <Button alignment="CENTER" layoutX="15.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#ConvertJSON" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Convert to JSON" />
@@ -30,5 +30,8 @@
       <Button alignment="CENTER" layoutX="16.0" layoutY="131.0" mnemonicParsing="false" onMouseClicked="#Correct" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Correct Error" AnchorPane.leftAnchor="16.0" />
       <Button alignment="CENTER" layoutX="16.0" layoutY="569.0" mnemonicParsing="false" onMouseClicked="#Save" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Save file" />
       <Button alignment="CENTER" layoutX="16.0" layoutY="193.0" mnemonicParsing="false" onMouseClicked="#Detect" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Detect Error" />
+      <Button alignment="CENTER" layoutX="274.0" layoutY="679.0" mnemonicParsing="false" onMouseClicked="#Construct" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Construct Graph" />
+      <Button alignment="CENTER" layoutX="435.0" layoutY="679.0" mnemonicParsing="false" onMouseClicked="#Undo" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Undo" />
+      <Button alignment="CENTER" layoutX="597.0" layoutY="680.0" mnemonicParsing="false" onMouseClicked="#Redo" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Redo" />
    </children>
 </AnchorPane>
