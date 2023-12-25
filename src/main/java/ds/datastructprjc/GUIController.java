@@ -55,6 +55,13 @@ public class GUIController {
         TA2.clear();
         TA2.appendText(Functions.correctError(XMLReader.fileText.toString()));
     }
+     @FXML
+    void Detect(MouseEvent event) {
+        TA2.clear();
+        TA2.appendText(Functions.detectError(XMLReader.fileText.toString()));
+
+
+    }
     @FXML
     void Compress(MouseEvent event) {
         TA2.clear();
