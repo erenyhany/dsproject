@@ -91,6 +91,22 @@ public class GUIController {
         TA2.clear();
         TA2.appendText(Functions.prettify(XMLReader.fileText.toString()));
     }
+    @FXML
+    void Construct(MouseEvent event) {
+        Graph.constructGraph();
+    }
+    @FXML
+    void Redo(MouseEvent event) {
+        TA2.clear();
+        TA2.appendText(Functions.redo());
+    }
+
+    @FXML
+    void Undo(MouseEvent event) {
+        TA2.clear();
+        TA2.appendText(Functions.undo());
+
+    }
 
 
 
