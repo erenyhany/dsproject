@@ -26,5 +26,16 @@ public class Graph {
             }
         }
     }
-    
+    static String printGraph() {
+        StringBuilder s=new StringBuilder();
+        for (int i = 0; i < adj.size(); i++) {
+        s .append("\nUser with ID " + (i+1) + " is followed by users with IDs: ");
+            for (int j = 0; j < adj.get(i).size(); j++) {
+               s.append(adj.get(i).get(j).getID()+"\t");
+            }
+        }
+        return s.toString();
+    }
+
+
 }
