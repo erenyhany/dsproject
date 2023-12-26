@@ -8,7 +8,7 @@ public class Graph {
     static ArrayList<LinkedList<User>> adj ;
 
     static void addEdge(ArrayList<LinkedList<User>> adj, User u, User v) {
-        adj.get(u.getID()).add(v);
+        adj.get(u.getID()-1).add(v);
     }
 
     public static void constructGraph(){
@@ -21,10 +21,10 @@ public class Graph {
         }
         for (User user : XMLReader.UsersList) {
             for (int followerID : user.getFollowersIDs()) {
-                addEdge(adj, user,XMLReader.UsersList.get(followerID));
+                addEdge(adj, user,XMLReader.UsersList.get(followerID-1));
                 Edges++;
             }
         }
     }
-
+    
 }
