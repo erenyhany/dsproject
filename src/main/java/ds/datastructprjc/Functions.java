@@ -89,4 +89,22 @@ public class Functions {
         }
         return "no operation is done";
     }
+        public static String postSearch(String wordToFind){
+        StringBuffer result = new StringBuffer(wordToFind + "found at:\n");
+        int userCounter =0 , postCounter =0;
+        for (User user : XMLReader.UsersList){
+            userCounter++;
+            for(Post post : user.getPosts()){
+                postCounter++;
+                if(post.getTopics().contains(wordToFind)){
+                    result.append("post "+postCounter+"TOPIC of user number"+userCounter+"\n");
+                }
+                if(post.getBody().contains(wordToFind)){
+                    result.append("post "+postCounter+"BODY of user number"+userCounter+"\n");
+                }
+
+            }
+        }
+        return result.toString();
+    }
 }
