@@ -98,7 +98,12 @@ public class GUIController {
     void Construct(MouseEvent event) {
         Graph.constructGraph();
     }
-   
+    @FXML
+    void print(MouseEvent event) {
+        TA2.clear();
+        TA2.appendText(Graph.printGraph());
+
+    }
     @FXML
     void Redo(MouseEvent event) {
         TA2.clear();
