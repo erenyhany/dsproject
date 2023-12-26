@@ -3,6 +3,7 @@ package ds.datastructprjc;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -16,6 +17,8 @@ public class GUIController {
     private TextArea TA1;
     @FXML
     private TextArea TA2;
+    @FXML
+    private TextField TF1;
 
 
     FileChooser fileChooser=new FileChooser();
@@ -55,7 +58,7 @@ public class GUIController {
         TA2.clear();
         TA2.appendText(Functions.correctError(XMLReader.fileText.toString()));
     }
-     @FXML
+    @FXML
     void Detect(MouseEvent event) {
         TA2.clear();
         TA2.appendText(Functions.detectError(XMLReader.fileText.toString()));
@@ -96,6 +99,12 @@ public class GUIController {
         Graph.constructGraph();
     }
     @FXML
+    void print(MouseEvent event) {
+        TA2.clear();
+        Graph.printGraph();
+
+    }
+    @FXML
     void Redo(MouseEvent event) {
         TA2.clear();
         TA2.appendText(Functions.redo());
@@ -105,6 +114,12 @@ public class GUIController {
     void Undo(MouseEvent event) {
         TA2.clear();
         TA2.appendText(Functions.undo());
+
+    }
+    @FXML
+    void Search(MouseEvent event) {
+        TA2.clear();
+        TA2.appendText(Functions.postSearch(TF1.getText()));
 
     }
 
