@@ -22,6 +22,7 @@ public class Graph {
         for (User user : XMLReader.UsersList) {
             for (int followerID : user.getFollowersIDs()) {
                 addEdge(adj, user,XMLReader.UsersList.get(followerID-1));
+                XMLReader.UsersList.get(followerID-1).followingNumber++;
                 Edges++;
             }
         }
