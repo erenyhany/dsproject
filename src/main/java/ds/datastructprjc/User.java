@@ -8,10 +8,12 @@ public class User {
     private String name;
     LinkedList<Post> posts = new LinkedList<Post>() ;
     LinkedList<Integer>followersIDs = new LinkedList<Integer>();
+    int followingNumber ;
 
     public User(int ID, String name) {
         this.ID = ID;
         this.name = name;
+        followingNumber = 0 ;
 
     }
 
