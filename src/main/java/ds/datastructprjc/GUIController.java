@@ -19,8 +19,13 @@ public class GUIController {
     private TextArea TA2;
     @FXML
     private TextField TF1;
-
-
+    @FXML
+    private TextField TF2;
+    @FXML
+    private TextField TF3;
+    @FXML
+    private TextField TF4;
+    
     FileChooser fileChooser=new FileChooser();
     @FXML
     void showFile(MouseEvent event) {
@@ -98,11 +103,11 @@ public class GUIController {
     void Construct(MouseEvent event) {
         Graph.constructGraph();
     }
+
     @FXML
     void print(MouseEvent event) {
         TA2.clear();
         TA2.appendText(Graph.printGraph());
-
     }
     @FXML
     void Redo(MouseEvent event) {
@@ -121,6 +126,30 @@ public class GUIController {
         TA2.clear();
         TA2.appendText(Functions.postSearch(TF1.getText()));
 
+    }
+
+    @FXML
+    void Active(MouseEvent event) {
+        TA2.clear();
+        TA2.appendText(Functions.mostActive());
+    }
+    @FXML
+    void Influence(MouseEvent event) {
+        TA2.clear();
+        TA2.appendText(Functions.mostInfluencer());
+    }
+    @FXML
+    void Mutual(MouseEvent event) {
+        TA2.clear();
+        TA2.appendText(Functions.mutualFollowers(Integer.parseInt(TF3.getText()),Integer.parseInt(TF4.getText())));
+        TF3.clear();
+        TF4.clear();
+    }
+    @FXML
+    void Suggest(MouseEvent event) {
+        TA2.clear();
+        TA2.appendText(Functions.suggestFollow(Integer.parseInt(TF2.getText())));
+        TF2.clear();
     }
 
 
