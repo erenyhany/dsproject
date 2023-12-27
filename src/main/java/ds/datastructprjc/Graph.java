@@ -32,7 +32,7 @@ public class Graph {
         for (int i = 0; i < adj.size(); i++) {
         s .append("\nUser with ID " + (i+1) + " is followed by users with IDs: ");
             for (int j = 0; j < adj.get(i).size(); j++) {
-               s.append(adj.get(i).get(j).getID()+"\t");
+               s.append(adj.get(i).get(j).getID()+" ");
             }
         }
         return s.toString();
