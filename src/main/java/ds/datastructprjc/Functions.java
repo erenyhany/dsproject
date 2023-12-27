@@ -134,7 +134,9 @@ public class Functions {
         return (XMLReader.UsersList.get(index)).getName();
     }
 
-    public static String mutualFollowers(User a, User b){
+    public static String mutualFollowers(int x, int y){
+        User a = XMLReader.UsersList.get(x-1);
+        User b = XMLReader.UsersList.get(y-1);
         List<Integer> nums = new ArrayList<>();
         int longer = (a.followersIDs.size()>b.followersIDs.size())?1:2; //get which user has more followers
         int size = (longer==1)?a.followersIDs.size():b.followersIDs.size(); // get max number of followers one has
@@ -166,7 +168,8 @@ public class Functions {
         return names;
     }
 
-    public static String suggestFollow(User a){
+    public static String suggestFollow(int x){
+        User a = XMLReader.UsersList.get(x-1);
         LinkedList<Integer> temp = new LinkedList<>();
         List<Integer> nums = new ArrayList<>();
         for(int i=0; i<a.followersIDs.size(); i++){
