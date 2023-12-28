@@ -40,7 +40,7 @@ public class GUIController {
     void Save(MouseEvent event) {
 
          File file=fileChooser.showSaveDialog(new Stage());
-         file = new File(file.getAbsolutePath() + ".xml");
+         file = new File(file.getAbsolutePath());
          fileWriter(file,TA2);
 
     }
