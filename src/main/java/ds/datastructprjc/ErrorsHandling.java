@@ -102,11 +102,7 @@ public class ErrorsHandling {
                 //                                    (b)if temp is a grandChild of the peek then we must
                 //                                    open the intermediate tag (parent of temp and child of peek)
                 if(!temp.contains("/")){
-                    if(parentAndChild(tagsStack.peek(),temp)){
-                        //CASE1
-                        tagsStack.push(temp);
-                        tagsHistory.push(temp);
-                    }else if (tagsStack.size()>1 &&areSibillings(getElementBeforePeek(tagsStack),tagsStack.peek(),temp)&&intermediateNode(tagsStack.peek(),temp)== null ){
+                    if (tagsStack.size()>1 &&areSibillings(getElementBeforePeek(tagsStack),tagsStack.peek(),temp)&&intermediateNode(tagsStack.peek(),temp)== null ){
                         //CASE 2.a
                         //in this if condition i added the last condition for the case of missing follower between id and followers (they are sibillings and ascendors)
                         errormsg.append("line "+lineCounter+": close the <"+tagsStack.peek()+">tag before opening <"+temp+">\n");
@@ -125,6 +121,11 @@ public class ErrorsHandling {
                         tagsHistory.push(inter);
                         tagsHistory.push(temp);
 
+                    }
+                    if(parentAndChild(tagsStack.peek(),temp)){
+                        //CASE1 mafish8alatat
+                        tagsStack.push(temp);
+                        tagsHistory.push(temp);
                     }
                 }
 
