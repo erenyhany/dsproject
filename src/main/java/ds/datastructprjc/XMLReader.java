@@ -1,11 +1,12 @@
 package ds.datastructprjc;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class XMLReader {
-    static LinkedList<User>UsersList= new LinkedList<User>();
+    static ArrayList<User> UsersList= new ArrayList<>();
     static StringBuffer fileText ;
 
     public static void readFile(String fileName)/*throws Exception*/{
@@ -40,7 +41,7 @@ public class XMLReader {
         boolean iaminfollower=false;
         User currentUser = null;
         Post curpost=null;
-        LinkedList<User> USERS = new LinkedList<User>() ;
+        ArrayList<User> USERS = new ArrayList<>() ;
         LinkedList<Integer> followers = new LinkedList<Integer>() ;
         LinkedList<Post> posts = new LinkedList<Post>() ;
         LinkedList<String> topics = new LinkedList<String>() ;

@@ -35,14 +35,14 @@
       <Button alignment="CENTER" layoutX="320.0" layoutY="633.0" mnemonicParsing="false" onMouseClicked="#Undo" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Undo" />
       <Button alignment="CENTER" layoutX="320.0" layoutY="666.0" mnemonicParsing="false" onMouseClicked="#Redo" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Redo" />
       <Button alignment="CENTER" layoutX="175.0" layoutY="666.0" mnemonicParsing="false" onMouseClicked="#print" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Show Graph" />
-      <Button alignment="CENTER" layoutX="320.0" layoutY="705.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Most active user" />
-      <Button alignment="CENTER" layoutX="169.0" layoutY="705.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" style="-fx-background-radius: 15px;" text="Most influencer user" />
+      <Button alignment="CENTER" layoutX="320.0" layoutY="705.0" mnemonicParsing="false" onMouseClicked="#Active" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Most active user" />
+      <Button alignment="CENTER" layoutX="169.0" layoutY="705.0" mnemonicParsing="false" onMouseClicked="#Influence" prefHeight="26.0" prefWidth="126.0" style="-fx-background-radius: 15px;" text="Most influencer user" />
       <Button alignment="CENTER" layoutX="758.0" layoutY="633.0" mnemonicParsing="false" onMouseClicked="#Search" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Search" />
       <TextField fx:id="TF1" layoutX="601.0" layoutY="632.0" />
-      <Button alignment="CENTER" layoutX="758.0" layoutY="666.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Suggest" />
-      <TextField layoutX="601.0" layoutY="666.0" />
-      <TextField layoutX="601.0" layoutY="705.0" prefHeight="26.0" prefWidth="66.0" />
-      <TextField layoutX="684.0" layoutY="705.0" prefHeight="26.0" prefWidth="66.0" />
-      <Button alignment="CENTER" layoutX="758.0" layoutY="705.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Get mutual" />
+      <Button alignment="CENTER" layoutX="758.0" layoutY="666.0" mnemonicParsing="false" onMouseClicked="#Suggest" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Suggest" />
+      <TextField fx:id="TF2" layoutX="601.0" layoutY="666.0" />
+      <TextField fx:id="TF3" layoutX="601.0" layoutY="705.0" prefHeight="26.0" prefWidth="66.0" />
+      <TextField fx:id="TF4" layoutX="684.0" layoutY="705.0" prefHeight="26.0" prefWidth="66.0" />
+      <Button alignment="CENTER" layoutX="758.0" layoutY="705.0" mnemonicParsing="false" onMouseClicked="#Mutual" prefHeight="26.0" prefWidth="114.0" style="-fx-background-radius: 15px;" text="Get mutual" />
    </children>
 </AnchorPane>
