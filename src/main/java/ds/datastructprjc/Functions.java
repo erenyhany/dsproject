@@ -118,7 +118,7 @@ public class Functions {
                 index=i;
             }
         }
-        return (XMLReader.UsersList.get(index)).getName();
+        return "Most Influencer: "+(XMLReader.UsersList.get(index)).getName();
     }
 
     public static String mostActive(){
@@ -131,7 +131,7 @@ public class Functions {
                 index=i;//set index of user have most followings
             }
         }
-        return (XMLReader.UsersList.get(index)).getName();
+        return "Most Active: "+(XMLReader.UsersList.get(index)).getName();
     }
 
     public static String mutualFollowers(int x, int y){
@@ -159,7 +159,7 @@ public class Functions {
         }
 
         //add names to string
-        String names="";
+        String names="Mutual followers:";
         for(int j=0;j<nums.size();j++){
             names=names.concat((XMLReader.UsersList.get(nums.get(j)-1)).getName());
             names=names.concat(", ");
@@ -182,7 +182,7 @@ public class Functions {
             }
 
         }
-        String names="";
+        String names="Suggested users to follow: ";
         for(int j=0;j<nums.size();j++){
             names=names.concat((XMLReader.UsersList.get(nums.get(j)-1)).getName());
             names=names.concat(", ");
