@@ -101,7 +101,7 @@ public class CompDecomp {
         }
 
         for(int n=map_ixml-1; n>=0; n--){
-            r=r.replaceAll(map_xml.get(n),String.valueOf(192+n));
+            r=r.replaceAll(map_xml.get(n),String.valueOf((char)(192+n)));
         }
 
         r = r.replaceAll("\n", "ص");
@@ -114,7 +114,7 @@ public class CompDecomp {
         String r = encodedInput;
 
         for(int n=map_ixml-1; n>=0; n--){
-            r=r.replaceAll(String.valueOf(192+n),map_xml.get(n));
+            r=r.replaceAll(String.valueOf((char)(192+n)),map_xml.get(n));
         }
 
         r = replaceCountWithSpaces(r);
@@ -155,7 +155,7 @@ public class CompDecomp {
         }
 
         for(int n=map_ijson-1; n>=0; n--){
-            r=r.replaceAll(map_json.get(n),String.valueOf(192+n));
+            r=r.replaceAll(map_json.get(n),String.valueOf((char)(192+n)));
         }
 
         r = r.replaceAll("\n", "ص");
@@ -169,7 +169,7 @@ public class CompDecomp {
         String r = input;
 
         for(int n=map_ijson-1; n>=0; n--){
-            r=r.replaceAll(String.valueOf(192+n),map_json.get(n));
+            r=r.replaceAll(String.valueOf((char)(192+n)),map_json.get(n));
         }
 
         r = replaceCountWithSpaces(r);
