@@ -1,12 +1,11 @@
 package ds.datastructprjc;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 public class XMLReader {
     static ArrayList<User> UsersList= new ArrayList<>();
+    static Vector<Integer> usersVector;
     static StringBuffer fileText ;
 
     public static void readFile(String fileName)/*throws Exception*/{
@@ -41,7 +40,8 @@ public class XMLReader {
         boolean iaminfollower=false;
         User currentUser = null;
         Post curpost=null;
-        ArrayList<User> USERS = new ArrayList<>() ;
+        ArrayList<User> USERS = new ArrayList<>(Collections.nCopies(100, null)) ;
+        Vector<Integer>tempUsersVector= new Vector<Integer>();
         LinkedList<Integer> followers = new LinkedList<Integer>() ;
         LinkedList<Post> posts = new LinkedList<Post>() ;
         LinkedList<String> topics = new LinkedList<String>() ;
@@ -77,7 +77,8 @@ public class XMLReader {
                 } else if (insideTagContent.toString().contains("</user>")) {
                     currentUser.setFollowersIDs(new LinkedList<>(followers));
                     currentUser.setPosts(new LinkedList<>(posts));
-                    USERS.add(currentUser);//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm adding to Userlist
+                    USERS.set(currentUser.getID(),currentUser);
+                    tempUsersVector.add(currentUser.getID());
 
                     followers.clear();
                     posts.clear();
@@ -139,6 +140,7 @@ public class XMLReader {
         }
 
         UsersList=USERS;
+        usersVector = tempUsersVector;
 
         }
 

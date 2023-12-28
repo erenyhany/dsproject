@@ -91,52 +91,53 @@ public class Functions {
     }
         public static String postSearch(String wordToFind){
         StringBuffer result = new StringBuffer(wordToFind + " found at:\n");
-        int userCounter =0 , postCounter =0;
-        for (User user : XMLReader.UsersList){
-            userCounter++;
+        int  postCounter =0;
+        for (Integer userid : XMLReader.usersVector){
+            User user = XMLReader.UsersList.get(userid);
             postCounter = 0;
             for(Post post : user.getPosts()){
                 postCounter++;
                 if(post.getTopics().contains(wordToFind)){
-                    result.append("post "+postCounter+" TOPIC of user number "+userCounter+"\n");
+                    result.append("post "+postCounter+" TOPIC of user number "+userid+"\n");
                 }
                 if(post.getBody().contains(wordToFind)){
-                    result.append("post "+postCounter+" BODY of user number "+userCounter+"\n");
+                    result.append("post "+postCounter+" BODY of user number "+userid+"\n");
                 }
 
             }
         }
+
         return result.toString();
     }
 
     public static String mostInfluencer(){
         int max=0, index=0,n;
-        for(int i=0; i<Graph.adj.size() ; i++){
-            n=(Graph.adj.get(i)).size();
+        for(Integer userid : XMLReader.usersVector){
+            n=(Graph.adj.get(userid)).size();
             if(n>max){
                 max=n;
-                index=i;
+                index=userid;
             }
         }
-        return "Most Influencer: "+(XMLReader.UsersList.get(index)).getName();
+        return "Most Influencer : "+(XMLReader.UsersList.get(index)).getName();
     }
 
     public static String mostActive(){
         int max=0, index=0,n;
-        for(int i=0; i<XMLReader.UsersList.size() ; i++){
+        for(Integer userid : XMLReader.usersVector){
             //check number of followings if greater than max
-            n=(XMLReader.UsersList.get(i)).followingNumber;
+            n=(XMLReader.UsersList.get(userid)).followingNumber;
             if(n>max){
                 max=n;
-                index=i;//set index of user have most followings
+                index=userid;//set index of user have most followings
             }
         }
         return "Most Active: "+(XMLReader.UsersList.get(index)).getName();
     }
 
     public static String mutualFollowers(int x, int y){
-        User a = XMLReader.UsersList.get(x-1);
-        User b = XMLReader.UsersList.get(y-1);
+        User a = XMLReader.UsersList.get(x);
+        User b = XMLReader.UsersList.get(y);
         List<Integer> nums = new ArrayList<>();
         int longer = (a.followersIDs.size()>b.followersIDs.size())?1:2; //get which user has more followers
         int size = (longer==1)?a.followersIDs.size():b.followersIDs.size(); // get max number of followers one has
@@ -159,9 +160,9 @@ public class Functions {
         }
 
         //add names to string
-        String names="Mutual followers:";
+        String names="Mutual followers: ";
         for(int j=0;j<nums.size();j++){
-            names=names.concat((XMLReader.UsersList.get(nums.get(j)-1)).getName());
+            names=names.concat((XMLReader.UsersList.get(nums.get(j))).getName());
             names=names.concat(", ");
         }
 
@@ -169,11 +170,11 @@ public class Functions {
     }
 
     public static String suggestFollow(int x){
-        User a = XMLReader.UsersList.get(x-1);
+        User a = XMLReader.UsersList.get(x);
         LinkedList<Integer> temp = new LinkedList<>();
         List<Integer> nums = new ArrayList<>();
         for(int i=0; i<a.followersIDs.size(); i++){
-            temp = (XMLReader.UsersList.get(a.followersIDs.get(i)-1)).followersIDs;
+            temp = (XMLReader.UsersList.get(a.followersIDs.get(i))).followersIDs;
 
             for(int j=0; j<temp.size(); j++){
                 if(!(a.followersIDs.contains(temp.get(j))) && !nums.contains(temp.get(j)) && (temp.get(j) != a.getID())){
@@ -184,7 +185,7 @@ public class Functions {
         }
         String names="Suggested users to follow: ";
         for(int j=0;j<nums.size();j++){
-            names=names.concat((XMLReader.UsersList.get(nums.get(j)-1)).getName());
+            names=names.concat((XMLReader.UsersList.get(nums.get(j))).getName());
             names=names.concat(", ");
         }
 
