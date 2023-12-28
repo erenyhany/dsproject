@@ -9,6 +9,7 @@ public class ErrorsHandling {
     public static StringBuilder correctedFile;
     public static StringBuilder errormsg;
     private static String [] tagNames = {"id","posts","post","users","user","followers","follower","topics","topic","name","body"};
+
     //making a tree to determine the child of each tags setting children for each node
     private final static TreeNode id  = new TreeNode(tagNames[0],new TreeNode[]{null,null,null,null});
     private final static TreeNode name = new TreeNode(tagNames[9],new TreeNode[]{null,null,null,null});
@@ -22,8 +23,7 @@ public class ErrorsHandling {
     private final static TreeNode user = new TreeNode(tagNames[4],new TreeNode[]{id,name,posts,followers});
     private final static TreeNode users = new TreeNode(tagNames[3], new TreeNode[]{user,null,null,null});     //root of the tree
 
-
-    private static Map<String , TreeNode> map = null;
+    private static TreeNode [] treeNodes = {id,posts,post,users,user,followers,follower,topics,topic,name,body};
 
 
 
@@ -33,7 +33,6 @@ public class ErrorsHandling {
     //and the correction in a static variable called
     public static void handleErrors(String fileText){
 
-        initializeMap();
         errormsg =new StringBuilder();
         correctedFile = new StringBuilder(fileText);
         Stack<Character>lessThanSignsStack = new Stack<>();
@@ -213,23 +212,7 @@ public class ErrorsHandling {
     }
 
 
-    private static void initializeMap(){
-        if(map == null){
-            map = new HashMap<>();
-            map.put("users",users);
-            map.put("user",user);
-            map.put("posts",posts);
-            map.put("id",id);
-            map.put("name",name);
-            map.put("followers",followers);
-            map.put("follower",follower);
-            map.put("post",post);
-            map.put("body",body);
-            map.put("topics",topics);
-            map.put("topic",topic);
 
-        }
-    }
 
     public static String getElementBeforePeek(Stack<String> stack) {
         String elementBeforePeek = null;
@@ -245,15 +228,15 @@ public class ErrorsHandling {
 
 
     private static boolean parentAndChild(String parent ,String child){
-        return (map.get(parent)).isParent(map.get(child));
+        return (get(parent)).isParent(get(child));
     }
 
     private static boolean areSibillings(String comonFather , String sib1 , String sib2){
-        return  (map.get(comonFather)).comonFather(map.get(sib1),map.get(sib2));
+        return  (get(comonFather)).comonFather(get(sib1),get(sib2));
     }
 
     private  static String intermediateNode (String grandParent ,String grandChild){
-        TreeNode result = (map.get(grandParent)).getIntermediate(map.get(grandChild));
+        TreeNode result = (get(grandParent)).getIntermediate(get(grandChild));
         if(result!= null)return result.data;
 
         return null;
@@ -264,6 +247,19 @@ public class ErrorsHandling {
 //    private boolean isAscenderOrDescender(String tag1 , String tag2){
 //        return (map.get(tag1)).isDescendent(map.get(tag2))!=null  ||  (map.get(tag2)).isDescendent(map.get(tag1))!=null;
 //    }
+
+
+    //function to get the node from its String
+    private static TreeNode get( String word){
+        TreeNode temp = null;
+        for(int i = 0 ;i<tagNames.length ; i++ ){
+            if(tagNames[i].equals(word)){
+                temp = treeNodes[i];
+            }
+        }
+        return temp;
+
+    }
   
 }
 
