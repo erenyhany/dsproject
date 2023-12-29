@@ -10,6 +10,7 @@ public class ErrorsHandling {
     public static StringBuilder errormsg;
     private static String [] tagNames = {"id","posts","post","users","user","followers","follower","topics","topic","name","body"};
 
+
     //making a tree to determine the child of each tags setting children for each node
     private final static TreeNode id  = new TreeNode(tagNames[0],new TreeNode[]{null,null,null,null});
     private final static TreeNode name = new TreeNode(tagNames[9],new TreeNode[]{null,null,null,null});
@@ -25,7 +26,7 @@ public class ErrorsHandling {
 
     private static TreeNode [] treeNodes = {id,posts,post,users,user,followers,follower,topics,topic,name,body};
 
-
+    private static TreeNode root = users;
 
 
 
@@ -55,12 +56,12 @@ public class ErrorsHandling {
 
                 //detect if Users tag (special case) doesnt exist
                 if(tagsStack.empty()){
-                    tagsStack.push("users");
-                    tagsHistory.push("users");
-                    if(!temp.contains("users") ){
-                        errormsg.append("line "+(lineCounter-1)+" :you should add <users> at line \n");
+                    tagsStack.push(root.data);
+                    tagsHistory.push(root.data);
+                    if(!temp.contains(root.data) ){
+                        errormsg.append("line "+(lineCounter-1)+" :you should add <"+root.data+"> at line \n");
                         correctedFile.delete(0, fileText.indexOf('<'));
-                        correctedFile.insert(0,"<users>\n");
+                        correctedFile.insert(0,"<"+root.data+">\n");
                         i =8;
 
                     }
@@ -69,7 +70,6 @@ public class ErrorsHandling {
 
                 //detect if '>'is missing in one conditions:(1)if temp contains '<'
                 if(temp.contains("<")){
-//                    errormsg.append("line "+lineCounter+" :the \'<\' no "+numOflineTags+" needs a \'>\'\n");
 
 
                     for(int x=0;x<tagNames.length;x++){
