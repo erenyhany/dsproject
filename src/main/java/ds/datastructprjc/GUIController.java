@@ -35,6 +35,12 @@ public class GUIController {
         String filePath = f.getPath();
         XMLReader.readFile(filePath);
         TA1.appendText(XMLReader.fileText.toString());}
+    @FXML
+    void ShowManual(MouseEvent event) {
+        XMLReader.fileText=new StringBuffer(TA1.getText());
+
+
+    }
 
     @FXML
     void Save(MouseEvent event) {
