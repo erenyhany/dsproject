@@ -132,7 +132,8 @@ public class ErrorsHandling {
 
                 //detect if temp has a '/' :
                 //1- if temp string == the top of the stack then no errors and pop
-                //2-else then we needed to open it's tag and return with (i)to the added '<' with its tag name
+                //2- else if temp string is a parent of the tag in the stack then w must close the tag in the top of stack first
+                //3-else then we needed to open it's tag and return with (i)to the added '<' with its tag name
                 //       to recheck the previous conditions again
 
                 if (temp.contains("/")){
@@ -141,11 +142,12 @@ public class ErrorsHandling {
                         //CASE1
                         tagsStack.pop();
                     }else if(parentAndChild(temp.substring(1),tagsStack.peek())){
+                        //CASE 2
                         correctedFile.insert(i,"</"+tagsStack.peek()+">");
                         errormsg.append("line "+lineCounter + ": expected </"+tagsStack.peek()+"> before closing <"+temp+">");
                         i--;
                     } else {
-                        //CASE2
+                        //CASE3
                         while(correctedFile.charAt(i) !='>'){
                             i--;
                         }
@@ -162,7 +164,7 @@ public class ErrorsHandling {
                     lessThanSignsStack.pop();
                 }else{
                     do{
-                       i--;
+                        i--;
                     }while(Character.isLetter(correctedFile.charAt(i)) || correctedFile.charAt(i)=='/');
 
                     correctedFile.insert(i+1,"<");
@@ -261,7 +263,7 @@ public class ErrorsHandling {
         return temp;
 
     }
-  
+
 }
 
 
@@ -318,4 +320,3 @@ class TreeNode {
 
 
 }
-
